@@ -1,13 +1,13 @@
 <template>
   <div>
     <h1>Skills</h1>
+    <div v-on:click="chooseAll()">all</div>
     <div v-for="area in areaList" v-on:click="toggleArea(area.name)">{{area.name}}</div>
     <ul>
       <li v-for="skill in skillList"
           v-if="areachoice.includes(skill.type) &&
           skill.level >= levelchoice">{{skill.name}}</li>
     </ul>
-    <p v-for="item in areachoice">{{item}}</p>
   </div>
 </template>
 
@@ -53,6 +53,10 @@
         } else {
           a.push(area);
         }
+      },
+      chooseAll() {
+        this.areachoice = [];
+        this.areaList.forEach(area => this.areachoice.push(area.name));
       },
     },
   };
