@@ -1,12 +1,15 @@
 <template>
   <div>
     <h1>Skills</h1>
+    <h2>Area choice</h2>
     <div v-on:click="chooseAll()">all</div>
     <div v-for="area in areaList" v-on:click="toggleArea(area.name)">{{area.name}}</div>
+    <h2>Minimum level choice (1-10)</h2>
+    <p>{{levelChoice}}</p><input v-model="levelChoice" >
     <ul>
       <li v-for="skill in skillList"
           v-if="areachoice.includes(skill.type) &&
-          skill.level >= levelchoice">{{skill.name}}</li>
+          skill.level >= levelChoice">{{skill.name}}: {{skill.level}}</li>
     </ul>
   </div>
 </template>
@@ -42,7 +45,7 @@
           },
         ],
         areachoice: ['tech'],
-        levelchoice: 2,
+        levelChoice: 2,
       };
     },
     methods: {
