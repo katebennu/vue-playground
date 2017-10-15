@@ -2,9 +2,9 @@
   <div>
     <h1>Skills</h1>
     <ul>
-    <li v-for="skill in skillList">{{skill.name}}: {{skill.level}}</li>
-          <!--v-if="areaChoice.includes(skill.type) &&
-          skill.level >= levelChoice"-->
+    <li v-for="skill in skillList"
+          v-if=" $store.state.areaChoice.includes(skill.type) &&
+          skill.level >=  $store.state.levelChoice">{{skill.name}}: {{skill.level}}</li>
     </ul>
   </div>
 </template>

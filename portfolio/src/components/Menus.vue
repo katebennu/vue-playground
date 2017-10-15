@@ -5,7 +5,7 @@
   <!--<div v-on:click="chooseAll()">all</div>-->
   <div v-for="area in areaList">{{area.name}}</div>
     <!--v-on:click="toggleArea(area.name)"-->
-    <!--<p v-for="area in areaChoice">{{area}}</p>-->
+    <p v-for="area in $store.state.areaChoice">{{area}}</p>
   <!--<h2>Minimum level choice (1-10)</h2>-->
   <p>{{ $store.state.levelChoice }}</p>
     <!--<input v-model="levelChoice" >-->
