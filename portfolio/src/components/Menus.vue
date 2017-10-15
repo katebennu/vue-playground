@@ -2,18 +2,20 @@
   <div>
   <h1>Menus</h1>
   <h2>Area choice</h2>
-  <!--<div v-on:click="chooseAll()">all</div>-->
-  <div v-for="area in areaList">{{area.name}}</div>
+  <button @click="chooseAll">all</button>
+  <div v-for="area in areaList" >{{area.name}}</div>
     <!--v-on:click="toggleArea(area.name)"-->
-    <p v-for="area in $store.state.areaChoice">{{area}}</p>
+    <!--@click="toggleArea"-->
+    <h3>store.state:</h3>
+    <p v-for="area in areaChoice">{{area}}</p>
   <!--<h2>Minimum level choice (1-10)</h2>-->
-  <p>{{ $store.state.levelChoice }}</p>
+  <p>{{ levelChoice }}</p>
     <!--<input v-model="levelChoice" >-->
   </div>
 </template>
 
 <script>
-//  import mapGetters from 'vuex';
+//  import mapActions from 'vuex';
 
   export default {
     name: 'menus',
@@ -27,23 +29,19 @@
             name: 'biz',
           },
         ],
-//        computed: mapGetters([
-//          'levelChoice',
-//        ]),
       };
     },
-    methods: {
-      toggleArea(area) {
-        const a = this.areaChoice;
-        if (a.includes(area)) {
-          a.splice(a.indexOf(area), 1);
-        } else {
-          a.push(area);
-        }
+    computed: {
+      areaChoice() {
+        return this.$store.state.areaChoice;
       },
+      levelChoice() {
+        return this.$store.state.levelChoice;
+      },
+    },
+    methods: {
       chooseAll() {
-        this.areaChoice = [];
-        this.areaList.forEach(area => this.areaChoice.push(area.name));
+        this.$store.commit('chooseAll');
       },
     },
   };
