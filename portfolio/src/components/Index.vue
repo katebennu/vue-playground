@@ -2,15 +2,17 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Index</h2>
+    <menus></menus>
     <skills></skills>
   </div>
 </template>
 
 <script>
+import menus from './Menus';
 import skills from './Skills';
 
 export default {
-  components: skills,
+  components: { menus, skills },
   name: 'Index',
   data() {
     return {
