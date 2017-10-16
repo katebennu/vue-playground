@@ -6,7 +6,7 @@ Vue.use(Vuex);
 // root state object.
 // each Vuex instance is just a single state tree.
 const state = {
-  areaChoice: ['tech'],
+  areaChoice: ['tech', 'biz', 'lang'],
   levelChoice: 2,
 };
 
@@ -16,16 +16,18 @@ const state = {
 // mutations must be synchronous and can be recorded by plugins
 // for debugging purposes.
 const mutations = {
-  // toggleArea(area) {
-  //   const a = state.areaChoice;
-  //   if (a.includes(area)) {
-  //     a.splice(a.indexOf(area), 1);
-  //   } else {
-  //     a.push(area);
-  //   }
-  // },
+  toggleArea(state, payload) {
+    console.log(payload);
+    const area = payload.area;
+    const a = state.areaChoice;
+    if (a.includes(area)) {
+      a.splice(a.indexOf(area), 1);
+    } else {
+      a.push(area);
+    }
+  },
   chooseAll(state) {
-    state.areaChoice = ['tech', 'biz'];
+    state.areaChoice = ['tech', 'biz', 'lang'];
     // state.levelChoice++;
   },
 };
