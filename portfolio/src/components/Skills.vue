@@ -3,8 +3,11 @@
     <h1>Skills</h1>
     <ul>
     <li class="skill" v-for="skill in skillList"
-          v-if=" $store.state.areaChoice.includes(skill.type) &&
-          skill.level >=  $store.state.levelChoice">{{skill.name}}: {{skill.level}}</li>
+          v-if=" (areaChoice.includes(skill.type) && skill.level >=  levelChoice && !favsOn) ||
+                  (favsOn && favs.includes(skill.name))"
+          @click="addFav({fav: skill.name})"
+          v-bind:class="{ active: favs.includes(skill.name) }">{{skill.name}}: {{skill.level}}</li>
+
     </ul>
   </div>
 </template>
@@ -12,6 +15,25 @@
 <script>
   export default {
     name: 'skills',
+    methods: {
+      addFav(payload) {
+        this.$store.commit('addFav', payload);
+      },
+    },
+    computed: {
+      areaChoice() {
+        return this.$store.state.areaChoice;
+      },
+      levelChoice() {
+        return this.$store.state.levelChoice;
+      },
+      favs() {
+        return this.$store.state.favs;
+      },
+      favsOn() {
+        return this.$store.state.favsOn;
+      },
+    },
     data() {
       return {
         skillList: [
@@ -54,10 +76,16 @@
             name: 'Russian',
             type: 'lang',
             level: 9,
-          },{
+          },
+          {
             name: 'Finnish',
             type: 'lang',
             level: 4,
+          },
+          {
+            name: 'Vue',
+            type: 'tech',
+            level: 3,
           },
         ],
       };

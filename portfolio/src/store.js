@@ -8,6 +8,8 @@ Vue.use(Vuex);
 const state = {
   areaChoice: ['tech', 'biz', 'lang'],
   levelChoice: 2,
+  favs: ['Python', 'Vue'],
+  favsOn: false,
 };
 
 // mutations are operations that actually mutates the state.
@@ -28,7 +30,17 @@ const mutations = {
   },
   chooseAll(state) {
     state.areaChoice = ['tech', 'biz', 'lang'];
-    // state.levelChoice++;
+  },
+  toggleFavs(state) {
+    state.favsOn = !state.favsOn;
+  },
+  addFav(state, payload) {
+    const fav = payload.fav;
+    if (!state.favs.includes(fav)) {
+      state.favs.push(fav);
+    } else {
+      state.favs.splice(state.favs.indexOf(fav), 1);
+    }
   },
 };
 
