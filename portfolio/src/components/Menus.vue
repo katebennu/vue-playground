@@ -5,7 +5,7 @@
       Areas: <p class="store-item" v-for="area in areaChoice">{{area}}</p><br>
       Favs: <p class="store-item" v-for="fav in favs">{{fav}}</p>
       <!--<h2>Minimum level choice (1-10)</h2>-->
-      <p>{{ levelChoice }}</p>
+      Level: <p>{{ levelChoice }}</p>
     </div>
     <h1>Menus</h1>
     <h2>Area choice</h2>
